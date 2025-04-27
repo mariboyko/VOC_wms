@@ -14,13 +14,15 @@ Start the development server
 npm start
 
 # Ensure you're in the frontend folder
-cd ~/VOC_wms/frontend
+
 
 # Create a new React app named 'app' (or any name you want)
-npx create-react-app app
-
+npx create-react-app frontend
+or
+npx create-react-app .
+thats if you cd to directory before
 # Navigate into the new app folder
-cd app
+cd frontend
 
 # Start the development server
 npm start
