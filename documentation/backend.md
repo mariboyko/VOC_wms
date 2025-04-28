@@ -13,7 +13,3 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print(f'pos
 
 pkill uvicorn
 uvicorn backend.main:app --reload
-
-test
-test
-test
