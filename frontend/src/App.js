@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import GoodsList from './components/GoodsList';
 import './App.css';
 
 function App() {
+  const [goods, setGoods] = useState([]);
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/goods')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.goods) {
+          setGoods(data.goods);
+        } else {
+          console.warn('No goods found in response:', data);
+          setGoods([]);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setGoods([]);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Battleship WMS</h1>
+      <GoodsList goods={goods} />
     </div>
   );
 }

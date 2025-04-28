@@ -7,6 +7,6 @@ router = APIRouter()
 def get_items():
     conn = get_db()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM items;")
+    cur.execute("SELECT * FROM goods;")
     items = cur.fetchall()
     return {"items": items}
