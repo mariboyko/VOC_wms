@@ -15,3 +15,4 @@ pkill uvicorn
 uvicorn backend.main:app --reload
 
 test
+test
