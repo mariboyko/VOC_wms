@@ -4,12 +4,13 @@ from ..db import get_db
 
 router = APIRouter(prefix="/goods", tags=["goods"])
 
-@router.get("/")
+@router.get("/", response_model=dict)
+@router.get("", response_model=dict)  # Handle /goods without trailing slash
 async def get_goods(limit: int = 100, offset: int = 0, db=Depends(get_db)):
     try:
         with db.cursor() as cur:
-            # Call the stored procedure and fetch JSON result
-            cur.execute("CALL get_goods(%s, %s, NULL)", (limit, offset))
+            # Call the stored procedure with p_result first
+            cur.execute("CALL get_goods(NULL, %s, %s)", (limit, offset))
             result = cur.fetchone()
             goods_json = result[0] if result else {"goods": []}
             return goods_json
