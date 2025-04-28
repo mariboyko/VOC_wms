@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .db import get_db
-from .api import goods, orders  # Ensure 'goods' is imported
+from .api import goods, orders, ships  # Ensure 'goods' is imported
 
 app = FastAPI()
 
@@ -16,6 +16,7 @@ app.add_middleware(
 
 app.include_router(goods.router)  # Include goods router
 app.include_router(orders.router)
+app.include_router(ships.router)
 
 @app.get("/")
 def read_root():

@@ -13,3 +13,11 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print(f'pos
 
 pkill uvicorn
 uvicorn backend.main:app --reload
+
+DO $$
+DECLARE
+    result_json JSON;
+BEGIN
+    CALL get_ships(result_json, 10, 0);
+    RAISE NOTICE '%', result_json;
+END $$;
