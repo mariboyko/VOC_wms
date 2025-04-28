@@ -7,7 +7,7 @@ import os
 # Load .env file
 load_dotenv()
 
-# Build DATABASE_URL from environment variables
+# Build DATABASE_URL from environment variables test
 DATABASE_URL = (
     f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}"
     f"@{os.getenv('POSTGRES_HOST', 'localhost')}:{os.getenv('POSTGRES_PORT', '5432')}"
