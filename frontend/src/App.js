@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import GoodsList from './components/GoodsList';
 import ShipsList from './components/ShipsList';
+import AddPersonnel from './components/AddPersonnel';
 import './App.css';
 
 function App() {
@@ -50,11 +52,29 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Battleship WMS</h1>
-      <GoodsList goods={goods} />
-      <ShipsList ships={ships} />
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/add-personnel">Add Personnel</Link></li>
+          </ul>
+        </nav>
+        <h1>Battleship WMS</h1>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <GoodsList goods={goods} />
+                <ShipsList ships={ships} />
+              </>
+            }
+          />
+          <Route path="/add-personnel" element={<AddPersonnel />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
