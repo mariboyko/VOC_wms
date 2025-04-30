@@ -10,7 +10,7 @@ wms_project/
 │   │   └── orders.py
 │   └── models/      ← optional, DTOs or data classes
 │
-├── db/              ← Database-related stuff
+├── database/              ← Database-related stuff
 │   ├── schema.sql   ← table definitions
 │   ├── functions/   ← stored procs (SQL files)
 │   └── seeds.sql    ← optional test data
